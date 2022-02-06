@@ -3,6 +3,7 @@
 
 import { program } from "commander";
 import { generate } from './password-generator';
+import { start } from './menu';
 
 program.version('1.0.0');
 
@@ -13,4 +14,6 @@ program
 
 const options = program.opts<{ username:string, password:string }>();
 
-generate(20);
+start();
+
+//generate(20);
