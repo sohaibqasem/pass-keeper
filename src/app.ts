@@ -3,8 +3,9 @@
 
 import { program } from "commander";
 import { generate } from './password-generator';
-import { start, inquirerMasterPassword, mainMenu, setupMsg } from './menu';
+import { welcome, inquirerMasterPassword, mainMenu, setupMsg } from './menu';
 import readWrite from './readWrite';
+
 import { existsSync, mkdirSync } from "fs";
 import { homedir } from "os";
 
@@ -39,6 +40,11 @@ const setup = async () => {
     }
 }
 
-// App flow
+const start = async () => {
+    // App flow
+    await welcome();
+    await setup();
+    await mainMenu();
+}
+
 start();
-setup();

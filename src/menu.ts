@@ -1,28 +1,15 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+import { GenerateNewPassword } from './handlers';
 //import { createSpinner } from 'nanospinner';
 
 //const sleep = (ms = 3000) => new Promise((r) => setTimeout(r, ms));
-
-async function welcome() {
-    console.log(`
-    ${chalk.blue('Pass-Keeper')} 
-    Passwords manager tool.
-
-  `);
-}
-
-export async function setupMsg() {
-    console.log(`
-    Let us setup pass-keeper...
-  `);
-}
 
 async function handleRequest(selected: string) {
 
     switch (selected) {
         case "Generate a new password":
-
+            await GenerateNewPassword();
             break;
         case "Custom new password":
 
@@ -48,6 +35,20 @@ async function handleRequest(selected: string) {
     // }
 }
 
+export async function welcome() {
+    console.log(`
+    ${chalk.blue('Pass-Keeper')} 
+    Passwords manager tool.
+
+  `);
+}
+
+export async function setupMsg() {
+    console.log(`
+    Let us setup pass-keeper...
+  `);
+}
+
 export async function mainMenu() {
     const answer = await inquirer.prompt({
         name: 'menu',
@@ -65,7 +66,7 @@ export async function mainMenu() {
     return handleRequest(answer.menu);
 }
 
-export async function inquirerMasterPassword() : Promise<string> {
+export async function inquirerMasterPassword(): Promise<string> {
     const answer = await inquirer.prompt({
         name: 'masterPassword',
         type: 'password',
@@ -74,8 +75,4 @@ export async function inquirerMasterPassword() : Promise<string> {
     });
 
     return answer.masterPassword;
-}
-
-export const start = () => {
-    welcome();
 }
