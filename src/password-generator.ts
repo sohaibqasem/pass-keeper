@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-export const generate = (length:number) => {
+export const generate = (length:number) : string => {
 
     const wishlist = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()%~!@-#$';
     
@@ -8,5 +8,5 @@ export const generate = (length:number) => {
         .map((x) => wishlist[x % wishlist.length])
         .join("");
     
-    console.log(password);
+    return password;
 }

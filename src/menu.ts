@@ -6,9 +6,15 @@ import inquirer from 'inquirer';
 
 async function welcome() {
     console.log(`
-    ${chalk.bgBlue('Pass-Keeper')} 
+    ${chalk.blue('Pass-Keeper')} 
     Passwords manager tool.
 
+  `);
+}
+
+export async function setupMsg() {
+    console.log(`
+    Let us setup pass-keeper...
   `);
 }
 
@@ -42,7 +48,7 @@ async function handleRequest(selected: string) {
     // }
 }
 
-async function mainMenu() {
+export async function mainMenu() {
     const answer = await inquirer.prompt({
         name: 'menu',
         type: 'list',
@@ -59,7 +65,17 @@ async function mainMenu() {
     return handleRequest(answer.menu);
 }
 
+export async function inquirerMasterPassword() : Promise<string> {
+    const answer = await inquirer.prompt({
+        name: 'masterPassword',
+        type: 'password',
+        prefix: '>',
+        message: 'Enter your master password:',
+    });
+
+    return answer.masterPassword;
+}
+
 export const start = () => {
     welcome();
-    mainMenu();
 }
