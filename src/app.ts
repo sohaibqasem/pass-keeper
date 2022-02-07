@@ -1,15 +1,17 @@
 #! /usr/bin/env node
 'use strict';
 
-import { program } from "commander";
+var { version } = require('../package.json');
+
+import readWrite from './readWrite';
 import { generate } from './password-generator';
 import { welcome, inquirerMasterPassword, mainMenu, setupMsg } from './menu';
-import readWrite from './readWrite';
 
-import { existsSync, mkdirSync } from "fs";
 import { homedir } from "os";
+import { program } from "commander";
+import { existsSync, mkdirSync } from "fs";
 
-program.version('1.0.0');
+program.version(version);
 
 program
     .option('--user <username>', "username")
@@ -40,9 +42,9 @@ const setup = async () => {
     }
 }
 
+// App flow
 const start = async () => {
-    // App flow
-    await welcome();
+    await welcome(version);
     await setup();
     await mainMenu();
 }
