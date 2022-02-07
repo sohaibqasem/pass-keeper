@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { GenerateNewPassword } from './handlers';
+import { CustomNewPassword, GenerateNewPassword, ListAllPasswords } from './handlers';
 //import { createSpinner } from 'nanospinner';
 
 //const sleep = (ms = 3000) => new Promise((r) => setTimeout(r, ms));
@@ -12,10 +12,10 @@ async function handleRequest(selected: string) {
             await GenerateNewPassword();
             break;
         case "Custom new password":
-
+            await CustomNewPassword();
             break;
         case "List all passwords":
-
+            await ListAllPasswords();
             break;
         case "Find a password by (App name)":
 
@@ -35,9 +35,9 @@ async function handleRequest(selected: string) {
     // }
 }
 
-export async function welcome() {
+export async function welcome(version:string) {
     console.log(`
-    ${chalk.blue('Pass-Keeper')} 
+    ${chalk.blue('Pass-Keeper')}, ${version}
     Passwords manager tool.
 
   `);
