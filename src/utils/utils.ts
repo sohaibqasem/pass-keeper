@@ -1,3 +1,6 @@
+import { createHash} from "crypto";
+import { decrypt } from "../encription";
+
 export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
     console.log(String("-".repeat(35)));
 
@@ -17,7 +20,7 @@ export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeep
     const DecriptedpassKeeperList = passKeeperList.map(item => {
         return {
             ...item,
-            password: item.password     
+            password: decrypt(item.password)     
         }
     });
 

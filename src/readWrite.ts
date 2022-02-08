@@ -31,9 +31,9 @@ const readPasswords = () : Array<IPassKeeper>  => {
 
 const readConfig = () : IConfig | null => {
     let config : IConfig | null;
-    const file = readFileJson(`${homedir()}/pass-keeper/config.json`);
-    if(file) {
-        config = JSON.parse(file);   
+    const data = readFileJson(`config`);
+    if(data) {
+        config = JSON.parse(data);   
     } else {
         config = null;
     }

@@ -3,6 +3,7 @@
 
 var { version } = require('../package.json');
 
+import State from './state/state';
 import readWrite from './readWrite';
 import { generate } from './password-generator';
 import { welcome, inquirerMasterPassword, mainMenu, setupMsg } from './menu';
@@ -20,23 +21,24 @@ program
 
 const options = program.opts<{ username: string, password: string }>();
 
-// global var
-let master_pass: string = '';
-
 // setup app
 const setup = async () => {
     const dir = `${homedir()}/pass-keeper/`;
     if (existsSync(dir)) {
-        master_pass = await inquirerMasterPassword();
+        State.setMasterPass(await inquirerMasterPassword());
+        const config = readWrite.readConfig();
+        State.setPublicKey(config?.publicSecretKey!!);
         return;
     } else {
         mkdirSync(dir);
         await setupMsg();
-        master_pass = await inquirerMasterPassword();
-        if (master_pass) {
+        State.setMasterPass(await inquirerMasterPassword());
+        if (State.getMasterPass()) {
+            const publicKey = generate(32);
             readWrite.writeConfig({
-                publicSecretKey: generate(32)
+                publicSecretKey: publicKey
             });
+            State.setPublicKey(publicKey);
             readWrite.writePassword([]);
         }
     }
@@ -46,6 +48,7 @@ const setup = async () => {
 const start = async () => {
     await welcome(version);
     await setup();
+    console.log("pKey", State.getPublicKey());
     await mainMenu();
 }
 
