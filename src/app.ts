@@ -24,15 +24,19 @@ const options = program.opts<{ username: string, password: string }>();
 // setup app
 const setup = async () => {
     const dir = `${homedir()}/pass-keeper/`;
+
     if (existsSync(dir)) {
+        // already installed (exist) pass-keeper
         State.setMasterPass(await inquirerMasterPassword());
         const config = readWrite.readConfig();
         State.setPublicKey(config?.publicSecretKey!!);
         return;
     } else {
+        // already installed (exist) pass-keeper
         mkdirSync(dir);
         await setupMsg();
         State.setMasterPass(await inquirerMasterPassword());
+
         if (State.getMasterPass()) {
             const publicKey = generate(32);
             readWrite.writeConfig({
@@ -48,7 +52,6 @@ const setup = async () => {
 const start = async () => {
     await welcome(version);
     await setup();
-    console.log("pKey", State.getPublicKey());
     await mainMenu();
 }
 

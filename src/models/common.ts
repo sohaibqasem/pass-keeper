@@ -8,3 +8,9 @@ interface IPassKeeper {
 interface IConfig {
     publicSecretKey: string,
 }
+
+interface IEncrypt {
+    iv: string,
+    password: string,
+    tag: string,
+  }

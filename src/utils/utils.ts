@@ -1,4 +1,3 @@
-import { createHash} from "crypto";
 import { decrypt } from "../encription";
 
 export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
@@ -16,7 +15,6 @@ export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
 }
 
 export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
-    //TODO (sohaib): Decript password
     const DecriptedpassKeeperList = passKeeperList.map(item => {
         return {
             ...item,
@@ -25,6 +23,10 @@ export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeep
     });
 
     return DecriptedpassKeeperList;
+}
+
+export const distributeStrIntoStr = (str:string, toBeDitrStr:string) => {
+    return [...[...str], ...[...toBeDitrStr]].sort().join('');
 }
 
 export const copyToClipboard = () => {
