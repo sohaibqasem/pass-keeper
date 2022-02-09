@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
-import { CustomNewPassword, GenerateNewPassword, ListAllPasswords } from './handlers';
+import { CustomNewPassword, FindPasswordByAppname, GenerateNewPassword, ListAllPasswords } from './handlers';
 //Logo font
 //@ts-ignore
 import Crawford from "figlet/importable-fonts/Crawford";
@@ -32,7 +32,8 @@ async function handleRequest(selected: string) {
             await mainMenu();
             break;
         case "Find a password by (App name)":
-
+            await FindPasswordByAppname(await inquirerAppname());
+            await mainMenu();
             break;
         default:
             break;
@@ -105,4 +106,15 @@ export async function inquirerMasterPassword(): Promise<string> {
     });
 
     return answer.masterPassword;
+}
+
+export async function inquirerAppname(): Promise<string> {
+    const answer = await inquirer.prompt({
+        name: 'appname',
+        type: 'input',
+        prefix: '>',
+        message: 'app name:',
+    });
+
+    return answer.appname;
 }

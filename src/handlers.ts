@@ -8,7 +8,7 @@ export async function inquirerPassKeeperWithoutPassword(): Promise<IPassKeeper> 
     const answer = await inquirer.prompt(
         [
             {
-                name: 'app name',
+                name: 'appname',
                 type: 'input',
                 prefix: '>',
                 message: 'Enter app name:',
@@ -34,7 +34,7 @@ export async function inquirerPassKeeperWithPassword(): Promise<IPassKeeper> {
     const answer = await inquirer.prompt(
         [
             {
-                name: 'app name',
+                name: 'appname',
                 type: 'input',
                 prefix: '>',
                 message: 'Enter app name:',
@@ -87,6 +87,9 @@ export const ListAllPasswords = () => {
     printPassKeeperLists(decriptPasswordInPassKeeperLists(passKeeperList));
 }
 
-export const FindPasswordByAppname = () => {
-    //TODO (sohaib): To Implement
+export const FindPasswordByAppname = (appName:string) => {
+    const passKeeper = readWrite.readPasswords().find(item => item.appname.includes(appName));    
+    if(passKeeper) {
+        printPassKeeperLists(decriptPasswordInPassKeeperLists([passKeeper]));
+    }
 }
