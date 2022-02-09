@@ -1,5 +1,3 @@
-import { decrypt } from "../encription";
-
 export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
     console.log(String("-".repeat(35)));
 
@@ -14,21 +12,6 @@ export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
     });
 }
 
-export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
-    const DecriptedpassKeeperList = passKeeperList.map(item => {
-        return {
-            ...item,
-            password: decrypt(item.password)     
-        }
-    });
-
-    return DecriptedpassKeeperList;
-}
-
-export const distributeStrIntoStr = (str:string, toBeDitrStr:string) => {
-    return [...[...str], ...[...toBeDitrStr]].sort(sorter).join('');
-}
-
 const isEven = (num:any) => num % 2 === 0;
 const sorter = ((a:any, b:any) => {
    if(isEven(a) && !isEven(b)){
@@ -40,6 +23,10 @@ const sorter = ((a:any, b:any) => {
    return a - b;
 });
 
+export const distributeStrIntoStr = (str:string, toBeDitrStr:string) => {
+    return [...[...str], ...[...toBeDitrStr]].sort(sorter).join('');
+}
+
 export const copyToClipboard = () => {
-    //TODO (sohaib): To Implement
+    //TODO (sohaib): To Implement copyToClipboard
 }

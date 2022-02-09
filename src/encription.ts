@@ -39,6 +39,17 @@ export const decrypt = (decpass: string) => {
   return password.toString();
 };
 
+export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
+  const DecriptedpassKeeperList = passKeeperList.map(item => {
+      return {
+          ...item,
+          password: decrypt(item.password)     
+      }
+  });
+
+  return DecriptedpassKeeperList;
+}
+
 export const calcSecretKey = (masterKey: string): string => {
   return createHash('sha256').update(distributeStrIntoStr(State.getPublicKey(), masterKey)).digest('hex').substring(0, 32);
 }

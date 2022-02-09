@@ -1,8 +1,9 @@
 import inquirer from "inquirer";
+
 import readWrite from './readWrite';
-import { decriptPasswordInPassKeeperLists, printPassKeeperLists } from "./utils/utils";
 import { generate } from "./password-generator";
-import { encrypt } from "./encription";
+import { printPassKeeperLists } from "./utils/utils";
+import { decriptPasswordInPassKeeperLists, encrypt } from "./encription";
 
 export async function inquirerPassKeeperWithoutPassword(): Promise<IPassKeeper> {
     const answer = await inquirer.prompt(
