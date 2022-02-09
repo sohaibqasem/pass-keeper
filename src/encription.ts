@@ -40,6 +40,5 @@ export const decrypt = (decpass: string) => {
 };
 
 export const calcSecretKey = (masterKey: string): string => {
-  console.log(distributeStrIntoStr(State.getPublicKey(), masterKey));
   return createHash('sha1').update(distributeStrIntoStr(State.getPublicKey(), masterKey)).digest('hex').substring(0, 32);
 }

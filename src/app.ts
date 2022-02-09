@@ -6,7 +6,7 @@ var { version } = require('../package.json');
 import State from './state/state';
 import readWrite from './readWrite';
 import { generate } from './password-generator';
-import { welcome, inquirerMasterPassword, mainMenu, setupMsg } from './menu';
+import { welcome, inquirerMasterPassword, mainMenu, setupMsg, Logo } from './menu';
 
 import { homedir } from "os";
 import { program } from "commander";
@@ -50,8 +50,10 @@ const setup = async () => {
 
 // App flow
 const start = async () => {
-    await welcome(version);
     await setup();
+    console.clear();
+    Logo();
+    await welcome(version);
     await mainMenu();
 }
 
