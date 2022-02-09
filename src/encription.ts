@@ -22,7 +22,7 @@ export const encrypt = (password: string) => {
 
 export const decrypt = (decpass: string) => {
   const [iv, encrypted, tag] = decpass.split("|");
-
+  
   const decipher = createDecipheriv(
     "aes-256-gcm",
     Buffer.from(calcSecretKey(State.getMasterPass())),
@@ -40,5 +40,5 @@ export const decrypt = (decpass: string) => {
 };
 
 export const calcSecretKey = (masterKey: string): string => {
-  return createHash('sha1').update(distributeStrIntoStr(State.getPublicKey(), masterKey)).digest('hex').substring(0, 32);
+  return createHash('sha256').update(distributeStrIntoStr(State.getPublicKey(), masterKey)).digest('hex').substring(0, 32);
 }

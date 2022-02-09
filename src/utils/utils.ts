@@ -26,8 +26,19 @@ export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeep
 }
 
 export const distributeStrIntoStr = (str:string, toBeDitrStr:string) => {
-    return [...[...str], ...[...toBeDitrStr]].sort().join('');
+    return [...[...str], ...[...toBeDitrStr]].sort(sorter).join('');
 }
+
+const isEven = (num:any) => num % 2 === 0;
+const sorter = ((a:any, b:any) => {
+   if(isEven(a) && !isEven(b)){
+      return -1;
+   };
+   if(!isEven(a) && isEven(b)){
+      return 1;
+   };
+   return a - b;
+});
 
 export const copyToClipboard = () => {
     //TODO (sohaib): To Implement
