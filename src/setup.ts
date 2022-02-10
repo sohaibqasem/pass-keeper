@@ -10,13 +10,11 @@ export const setup = async () => {
     const dir = `${homedir()}/pass-keeper/`;
 
     if (existsSync(dir)) {
-        // already installed (exist) pass-keeper
         State.setMasterPass(await inquirerMasterPassword());
         const config = readWrite.readConfig();
         State.setPublicKey(config?.publicSecretKey!!);
         return;
     } else {
-        // unInstalled (exist) pass-keeper
         mkdirSync(dir);
         await setupMsg();
         State.setMasterPass(await inquirerMasterPassword());
