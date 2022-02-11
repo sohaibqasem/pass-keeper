@@ -1,0 +1,75 @@
+Welcome
+-------
+Logo
+welcome message
+
+Setup
+-----
+
+pass-keeper (folder)
+----------------------------------------------------------
+	config.json
+		{
+			"publicSecretKey": "32-char"
+		}
+	passwords.json
+		[
+			{
+			"appname":"string",
+			"username":"string",
+			"email":"string",
+			"password":"string-encripted"
+			}	
+		]
+----------------------------------------------------------
+
+Two Cases
+---------
+check if pass-keeper (folder) already installed 
+First-Time(In Device)
+---------------------
+	- create pass-keeper folder with all setup file
+	- generate a public secret key 32-char (saved to confing-json)
+	- ask user to eneter his master key for the fist time(clipboard)
+	- calc secret key
+	- MainMenu
+Already installed(In Device)
+----------------------------
+	- read a public secret key 32-char (from confing-json)
+	- ask user to eneter his master key
+	- calc secret key
+	- MainMenu
+
+MainMenu
+--------
+
+Generate a new password
+-----------------------
+- readPasswords
+- inquirerPassKeeperObj appname, username, email
+- generate a new password
+- enc password with secret key
+- update passwords list
+
+
+Custom new password
+-------------------
+- readPasswords
+- inquirerPassKeeperObj appname, username, email, password
+- enc password with secret key
+- update passwords list
+
+
+List all passwords
+------------------
+- readPasswords
+- enc passwords with secret key
+- print it to the console
+
+
+Find a password by (App name)
+-----------------------------
+- readPasswords
+- find by name
+- enc password with secret key
+- print it to the console
