@@ -1,6 +1,6 @@
 export const printPassKeeperLists = (passKeeperList: Array<IPassKeeper>) => {
+    console.log('\n');
     console.log(String("-".repeat(35)));
-
     passKeeperList.map(item => {
         console.log(`
         app-name: ${item.appname}

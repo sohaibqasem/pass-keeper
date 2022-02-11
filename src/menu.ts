@@ -1,19 +1,17 @@
 import chalk from 'chalk';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
-import { createSpinner } from 'nanospinner';
+import { createSpinner, Spinner } from 'nanospinner';
 import { CustomNewPassword, FindPasswordByAppname, GenerateNewPassword, ListAllPasswords } from './handlers';
-//Logo font
-//@ts-ignore
+//@ts-ignore (not included in types for figlet)
 import Crawford from "figlet/importable-fonts/Crawford";
-
 
 const sleep = (ms = 3000) => new Promise((r) => setTimeout(r, ms));
 
-const createLoadingSpinner = async (text:string, ms?:number) => {
+export const createLoadingSpinner = async (text:string, ms?:number) : Promise<Spinner> => {
     const spinner = createSpinner(text).start();
     await sleep(ms);
-    spinner.success({ text: text });
+    return spinner;
 }
 
 async function handleRequest(selected: string) {
@@ -77,7 +75,13 @@ export async function welcome(version: string) {
 }
 
 export async function setupMsg() {
-    await createLoadingSpinner(`Let us setup pass-keeper...`); 
+    const spinner = await createLoadingSpinner(`Let us setup pass-keeper...`);
+    try {
+        spinner.success({ text: "Let us setup pass-keeper..." });
+    }
+    catch {
+        spinner.error({ text: "Let us setup pass-keeper..." });
+    }
 }
 
 export async function mainMenu() {
