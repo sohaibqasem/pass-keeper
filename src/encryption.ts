@@ -3,6 +3,7 @@ import { distributeStrIntoStr } from "./utils/utils";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "crypto";
 
 export const encrypt = (password: string) => {
+  if(password === '') return '';
   const iv = Buffer.from(randomBytes(16));
 
   const cipher = createCipheriv(
@@ -39,7 +40,7 @@ export const decrypt = (decpass: string) => {
   return password.toString();
 };
 
-export const decriptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
+export const decryptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
   const DecriptedpassKeeperList = passKeeperList.map(item => {
       return {
           ...item,

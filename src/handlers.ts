@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import readWrite from './readWrite';
 import { generate } from "./password-generator";
 import { printPassKeeperLists } from "./utils/utils";
-import { decriptPasswordInPassKeeperLists, encrypt } from "./encription";
+import { decryptPasswordInPassKeeperLists, encrypt } from "./encryption";
 
 export async function inquirerPassKeeperWithoutPassword(): Promise<IPassKeeper> {
     const answer = await inquirer.prompt(
@@ -85,12 +85,12 @@ export const CustomNewPassword = async () => {
 
 export const ListAllPasswords = () => {
     const passKeeperList = readWrite.readPasswords();    
-    printPassKeeperLists(decriptPasswordInPassKeeperLists(passKeeperList));
+    printPassKeeperLists(decryptPasswordInPassKeeperLists(passKeeperList));
 }
 
 export const FindPasswordByAppname = (appName:string) => {
     const passKeeper = readWrite.readPasswords().find(item => item.appname.includes(appName));    
     if(passKeeper) {
-        printPassKeeperLists(decriptPasswordInPassKeeperLists([passKeeper]));
+        printPassKeeperLists(decryptPasswordInPassKeeperLists([passKeeper]));
     }
 }
