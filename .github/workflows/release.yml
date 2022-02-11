@@ -1,0 +1,25 @@
+name: "🚀 release"
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    release:
+        name: 🚀 release
+        runs-on: ubuntu-latest
+        steps:
+            - name: 📚 checkout
+              uses: actions/checkout
+            - name: 🟢 node
+              uses: actions/setup-node
+            - name: 📄 test
+              run: npm test
+              with:
+                  node-version: 12
+                  registry-url: https://registry.npmjs.org
+            - name: 🚀 publish
+              run: npm publish --access public
+              working-directory: my-package
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

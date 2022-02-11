@@ -1,6 +1,6 @@
 {
   "name": "pass-keeper",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Node CLI tool for generate and store passwords",
   "main": "src/app.ts",
   "scripts": {
