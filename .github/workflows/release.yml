@@ -16,6 +16,8 @@ jobs:
               with:
                   node-version: 14
                   registry-url: https://registry.npmjs.org
+            - name: 🟢 install dependencies
+            - run: npm install
             - name: 📄 test
               run: npm test
             - name: 🚀 publish
