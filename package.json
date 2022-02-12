@@ -1,7 +1,7 @@
 {
   "name": "passkpr",
-  "version": "0.1.0",
-  "description": "Node CLI tool for generate and store passwords",
+  "version": "0.2.0",
+  "description": "Node CLI tool for generate and store passwords securely with one master key",
   "main": "src/app.ts",
   "scripts": {
     "start-dev": "webpack --config webpack.dev.js",
@@ -9,7 +9,8 @@
     "start": "node dist/bundle.js",
     "test": "jest"
   },
-  "bin": "./dist/bundle.js",
+  "bin": "dist/bundle.js",
+  "files": ["dist/*", "!/*/"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sohaibqasem/Pass-Keeper.git"
