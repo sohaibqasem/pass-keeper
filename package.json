@@ -9,6 +9,7 @@
     "start": "node dist/bundle.js",
     "test": "jest --watchAll --verbose"
   },
+  "bin": "./dist/bundle.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sohaibqasem/Pass-Keeper.git"
