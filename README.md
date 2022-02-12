@@ -5,7 +5,7 @@ Node CLI tool for generate and store passwords securely with one **master key**
 
 ## quick start
 ```sh
-npx pass-keeper
+npx passkpr
 ``` 
 
 ![react-DraftJs-Demo - Animated gif demo](src/demo/pass-keeper.png)
