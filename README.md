@@ -3,6 +3,12 @@
 # pass-keeper
 Node CLI tool for generate and store passwords securely with one **master key**
 
+## wahts next
+- check the master-password after the user enter it immediately.
+- better Exception handling.
+- improve performance.
+- add new features like clipboard and others.
+
 ## quick start
 ```sh
 npx passkpr
@@ -29,27 +35,27 @@ pass-keeper (folder)
 		]
 ----------------------------------------------------------
 
-Two Cases
+two Cases
 ---------
 check if pass-keeper (folder) already installed 
-First-Time(In Device)
+first-time(in Device)
 ---------------------
 	- create pass-keeper folder with all setup file
 	- generate a public secret key 32-char (saved to confing.json)
 	- ask user to eneter his master key for the fist time(to clipboard)
 	- calc secret key
 	- mainMenu
-Already installed(In Device)
+already installed(in Device)
 ----------------------------
 	- read a public secret key 32-char (from confing.json)
 	- ask user to eneter his master key
 	- calc secret key
 	- mainMenu
 
-MainMenu
+mainMenu
 --------
 
-Generate a new password
+generate a new password
 -----------------------
 - readPasswords
 - inquirerPassKeeperObj appname, username, email
@@ -58,7 +64,7 @@ Generate a new password
 - update passwords list
 
 
-Custom new password
+custom new password
 -------------------
 - readPasswords
 - inquirerPassKeeperObj appname, username, email, password
@@ -66,14 +72,14 @@ Custom new password
 - update passwords list
 
 
-List all passwords
+list all passwords
 ------------------
 - readPasswords
 - decrypt passwords with secret key
 - print it to the console
 
 
-Find a password by (App name)
+find a password by (App name)
 -----------------------------
 - readPasswords
 - find by name
