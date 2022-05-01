@@ -5,7 +5,7 @@ import readWrite from './readWrite';
 import { generate } from "./password-generator";
 import { printPassKeeperLists } from "./utils/utils";
 import { createLoadingSpinner, inquirerMasterPassword } from "./menu";
-import { decryptPasswordInPassKeeperLists, encrypt } from "./encryption";
+import { decryptPasswordInPassKeeperLists, encrypt, tryLogIn } from "./encryption";
 
 export async function inquirerPassKeeperWithoutPassword(): Promise<IPassKeeper> {
     const answer = await inquirer.prompt(
@@ -116,6 +116,26 @@ export const FindPasswordByAppname = async (appName: string) => {
         catch {
             spinner.error({ text: `the given mater password is wrong\n` });
             State.setMasterPass(await inquirerMasterPassword());
+        }
+    }
+    catch {
+        spinner.error({ text: `error while reading your passwords list file\n` });
+    }
+}
+
+export const testPassword = async () => {
+    const spinner = await createLoadingSpinner(`Loading...`, 1000);
+    try {
+        const passKeeperList = readWrite.readPasswords();
+        try {
+            if(tryLogIn(passKeeperList)) {
+                spinner.success({ text: "correct password\n" });
+            }
+        }
+        catch {
+            spinner.error({ text: `the given mater password is wrong\n` });
+            State.setMasterPass(await inquirerMasterPassword());
+            await testPassword();
         }
     }
     catch {
