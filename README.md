@@ -3,15 +3,11 @@
 # pass-keeper
 Node CLI tool for generate and store passwords securely with one **master key**
 
-## wahts next
-- check the master-password after the user enter it immediately.
-- better Exception handling.
-- improve performance.
-- add new features like clipboard and others.
-
 ## quick start
 ```sh
 npx passkpr
+npx passkpr [app-name]
+npx passkpr [app-name] [master-password]
 ```
 
 ![react-DraftJs-Demo - Animated gif demo](src/demo/pass-keeper.png)

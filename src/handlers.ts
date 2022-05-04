@@ -91,15 +91,15 @@ export const ListAllPasswords = async () => {
         const passKeeperList = readWrite.readPasswords();
         try {
             printPassKeeperLists(decryptPasswordInPassKeeperLists(passKeeperList));
-            spinner.success({ text: "done\n" });
+            spinner.success({ text: "Done\n" });
         }
         catch {
-            spinner.error({ text: `the given mater password is wrong\n` });
+            spinner.error({ text: `The given master password is wrong\n` });
             State.setMasterPass(await inquirerMasterPassword());
         }
     }
     catch {
-        spinner.error({ text: `error while reading your passwords list file\n` });
+        spinner.error({ text: `Error while reading your passwords list file\n` });
     }
 }
 
@@ -111,15 +111,15 @@ export const FindPasswordByAppname = async (appName: string) => {
             if (passKeeper) {
                 printPassKeeperLists(decryptPasswordInPassKeeperLists([passKeeper]));
             }
-            spinner.success({ text: "done\n" });
+            spinner.success({ text: "Done\n" });
         }
         catch {
-            spinner.error({ text: `the given mater password is wrong\n` });
+            spinner.error({ text: `The given master password is wrong\n` });
             State.setMasterPass(await inquirerMasterPassword());
         }
     }
     catch {
-        spinner.error({ text: `error while reading your passwords list file\n` });
+        spinner.error({ text: `Error while reading your passwords list file\n` });
     }
 }
 
@@ -129,16 +129,16 @@ export const testPassword = async () => {
         const passKeeperList = readWrite.readPasswords();
         try {
             if(tryLogIn(passKeeperList)) {
-                spinner.success({ text: "correct password\n" });
+                spinner.success({ text: "Correct password\n" });
             }
         }
         catch {
-            spinner.error({ text: `the given mater password is wrong\n` });
+            spinner.error({ text: `The given master password is wrong\n` });
             State.setMasterPass(await inquirerMasterPassword());
             await testPassword();
         }
     }
     catch {
-        spinner.error({ text: `error while reading your passwords list file\n` });
+        spinner.error({ text: `Error while reading your passwords list file\n` });
     }
 }

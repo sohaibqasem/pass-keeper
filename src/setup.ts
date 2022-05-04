@@ -7,12 +7,12 @@ import { testPassword } from "./handlers";
 import readWrite from "./readWrite";
 import State from "./state/state";
 
-export const setup = async () => {
+export const setup = async (password:string) => {
     const dir = `${homedir()}/pass-keeper/`;
 
     if (existsSync(dir)) {
         await Logo();
-        State.setMasterPass(await inquirerMasterPassword());
+        State.setMasterPass(password ? password : await inquirerMasterPassword());
         const config = readWrite.readConfig();
         State.setPublicKey(config?.publicSecretKey!!);
         await testPassword();
@@ -20,7 +20,7 @@ export const setup = async () => {
     } else {
         mkdirSync(dir);
         await setupMsg();
-        State.setMasterPass(await inquirerMasterPassword());
+        State.setMasterPass(password ? password : await inquirerMasterPassword());
 
         if (State.getMasterPass()) {
             const publicKey = generate(32);

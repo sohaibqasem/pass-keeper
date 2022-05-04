@@ -10,19 +10,18 @@ import { setup } from './setup';
 program.version(version);
 
 program
-    .option('--user <username>', "username")
-    .option('--pass <password>', "password")
+    .arguments('[appname] [password]')
     .parse();
 
-const options = program.opts<{ username: string, password: string }>();
+const [ appname, password ] = program.args;
 
 // App flow
 const start = async () => {
-    await setup();
+    await setup(password);
     console.clear();
     Logo();
     await welcome(version);
-    await mainMenu();
+    await mainMenu(appname);
 }
 
 start();
