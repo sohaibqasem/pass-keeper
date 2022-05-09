@@ -51,9 +51,9 @@ export const decryptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeep
   return DecriptedpassKeeperList;
 }
 
-export const tryLogIn = (passKeeperList: Array<IPassKeeper>): boolean => {
-  if (passKeeperList.length > 0) {
-    const DecriptedpassKeeperItem = decrypt(passKeeperList[0].password);
+export const tryLogIn = (passKeeper: IPassKeeper): boolean => {
+  if (passKeeper) {
+    const DecriptedpassKeeperItem = decrypt(passKeeper.password);
     return DecriptedpassKeeperItem ? true : false;
   }
 

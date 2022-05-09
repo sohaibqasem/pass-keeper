@@ -14,7 +14,7 @@ export const createLoadingSpinner = async (text:string, ms?:number) : Promise<Sp
     return spinner;
 }
 
-async function handleRequest(selected: string, value?:string) {
+export async function handleRequest(selected: string, value?:string) {
 
     switch (selected) {
         case "Generate a new password":
@@ -84,11 +84,7 @@ export async function setupMsg() {
     }
 }
 
-export async function mainMenu(appname?:string) {
-    if(appname) {
-        handleRequest("Find a password by (App name)", appname);
-        return
-    }
+export async function mainMenu() {
     const answer = await inquirer.prompt({
         name: 'menu',
         type: 'list',

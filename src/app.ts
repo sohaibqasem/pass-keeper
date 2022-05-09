@@ -3,7 +3,7 @@
 
 var { version } = require('../package.json');
 
-import { welcome, mainMenu, Logo } from './menu';
+import { welcome, mainMenu, Logo, handleRequest } from './menu';
 import { program } from "commander";
 import { setup } from './setup';
 
@@ -21,7 +21,11 @@ const start = async () => {
     console.clear();
     Logo();
     await welcome(version);
-    await mainMenu(appname);
+    if(appname) {
+        await handleRequest("Find a password by (App name)", appname);
+    } else {
+        await mainMenu();
+    }
 }
 
 start();

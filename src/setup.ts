@@ -6,8 +6,9 @@ import { generate } from "./password-generator";
 import { testPassword } from "./handlers";
 import readWrite from "./readWrite";
 import State from "./state/state";
+import { encrypt } from "./encryption";
 
-export const setup = async (password:string) => {
+export const setup = async (password: string) => {
     const dir = `${homedir()}/pass-keeper/`;
 
     if (existsSync(dir)) {
@@ -15,8 +16,8 @@ export const setup = async (password:string) => {
         State.setMasterPass(password ? password : await inquirerMasterPassword());
         const config = readWrite.readConfig();
         State.setPublicKey(config?.publicSecretKey!!);
+        setupPasswordsFileForFirstTime();
         await testPassword();
-        return;
     } else {
         mkdirSync(dir);
         await setupMsg();
@@ -28,7 +29,22 @@ export const setup = async (password:string) => {
                 publicSecretKey: publicKey
             });
             State.setPublicKey(publicKey);
-            readWrite.writePassword([]);
+            setupPasswordsFileForFirstTime();
         }
+    }
+}
+
+const setupPasswordsFileForFirstTime = () => {
+    if (!readWrite.readPasswords().find(item => item.appname === "pass-keeper")) {
+        const passKeeper: IPassKeeper = {
+            appname: "pass-keeper",
+            username: "pass-keeper",
+            email: "passkpr@setup.com",
+            password: "passkpr1@3$5^1"
+        }
+
+        passKeeper.password = encrypt(passKeeper.password);
+
+        readWrite.writePassword([passKeeper]);
     }
 }

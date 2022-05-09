@@ -88,7 +88,7 @@ export const CustomNewPassword = async () => {
 export const ListAllPasswords = async () => {
     const spinner = await createLoadingSpinner(`Loading...`, 1000);
     try {
-        const passKeeperList = readWrite.readPasswords();
+        const passKeeperList = readWrite.readPasswords().filter(item => item.username !== "pass-keeper");
         try {
             printPassKeeperLists(decryptPasswordInPassKeeperLists(passKeeperList));
             spinner.success({ text: "Done\n" });
@@ -106,10 +106,10 @@ export const ListAllPasswords = async () => {
 export const FindPasswordByAppname = async (appName: string) => {
     const spinner = await createLoadingSpinner(`Loading...`, 1000);
     try {
-        const passKeeper = readWrite.readPasswords().find(item => item.appname.includes(appName));
+        const passKeeper = readWrite.readPasswords().filter(item => item.appname !== "pass-keeper").filter(item => item.appname.includes(appName));
         try {
             if (passKeeper) {
-                printPassKeeperLists(decryptPasswordInPassKeeperLists([passKeeper]));
+                printPassKeeperLists(decryptPasswordInPassKeeperLists([...passKeeper]));
             }
             spinner.success({ text: "Done\n" });
         }
@@ -127,9 +127,12 @@ export const testPassword = async () => {
     const spinner = await createLoadingSpinner(`Loading...`, 1000);
     try {
         const passKeeperList = readWrite.readPasswords();
+        const passKeeper = passKeeperList.find(item => item.appname === "pass-keeper")
         try {
-            if(tryLogIn(passKeeperList)) {
-                spinner.success({ text: "Correct password\n" });
+            if(passKeeper) {
+                if(tryLogIn(passKeeper)) {
+                    spinner.success({ text: "Correct password\n" });
+                }
             }
         }
         catch {
