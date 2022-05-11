@@ -1,13 +1,13 @@
 {
   "name": "passkpr",
-  "version": "0.2.0",
+  "version": "0.4.0-beta",
   "description": "Node CLI tool for generate and store passwords securely with one master key",
   "main": "src/app.ts",
   "scripts": {
     "start-dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start": "node dist/bundle.js",
-    "test": "jest"
+    "test": "jest --coverage=true"
   },
   "bin": "dist/bundle.js",
   "files": [
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "chalk": "4.1.2",
+    "clipboardy": "^3.0.0",
     "commander": "^9.0.0",
     "figlet": "^1.5.2",
     "inquirer": "^8.2.0",

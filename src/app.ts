@@ -3,26 +3,29 @@
 
 var { version } = require('../package.json');
 
-import { welcome, mainMenu, Logo } from './menu';
+import { welcome, mainMenu, Logo, handleRequest } from './menu';
 import { program } from "commander";
 import { setup } from './setup';
 
 program.version(version);
 
 program
-    .option('--user <username>', "username")
-    .option('--pass <password>', "password")
+    .arguments('[appname] [password]')
     .parse();
 
-const options = program.opts<{ username: string, password: string }>();
+const [ appname, password ] = program.args;
 
 // App flow
 const start = async () => {
-    await setup();
+    await setup(password);
     console.clear();
     Logo();
     await welcome(version);
-    await mainMenu();
+    if(appname) {
+        await handleRequest("Find a password by (App name)", appname);
+    } else {
+        await mainMenu();
+    }
 }
 
 start();

@@ -3,7 +3,7 @@ import { distributeStrIntoStr } from "./utils/utils";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "crypto";
 
 export const encrypt = (password: string) => {
-  if(password === '') return '';
+  if (password === '') return '';
   const iv = Buffer.from(randomBytes(16));
 
   const cipher = createCipheriv(
@@ -23,7 +23,7 @@ export const encrypt = (password: string) => {
 
 export const decrypt = (decpass: string) => {
   const [iv, encrypted, tag] = decpass.split("|");
-  
+
   const decipher = createDecipheriv(
     "aes-256-gcm",
     Buffer.from(calcSecretKey(State.getMasterPass())),
@@ -42,13 +42,22 @@ export const decrypt = (decpass: string) => {
 
 export const decryptPasswordInPassKeeperLists = (passKeeperList: Array<IPassKeeper>): Array<IPassKeeper> => {
   const DecriptedpassKeeperList = passKeeperList.map(item => {
-      return {
-          ...item,
-          password: decrypt(item.password)     
-      }
+    return {
+      ...item,
+      password: decrypt(item.password)
+    }
   });
 
   return DecriptedpassKeeperList;
+}
+
+export const tryLogIn = (passKeeper: IPassKeeper): boolean => {
+  if (passKeeper) {
+    const DecriptedpassKeeperItem = decrypt(passKeeper.password);
+    return DecriptedpassKeeperItem ? true : false;
+  }
+
+  return false;
 }
 
 export const calcSecretKey = (masterKey: string): string => {
