@@ -3,9 +3,13 @@
 # pass-keeper
 Node CLI tool for generate and store passwords securely with one **master key**
 
-## Quick start
+## Setup
 ```sh
 npx passkpr
+```
+## Quick start
+```sh
+npx passkpr 								// To open the mainmenu
 npx passkpr [app-name]
 npx passkpr [app-name] [master-password]
 ```
