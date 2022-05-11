@@ -7,7 +7,7 @@
     "start-dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start": "node dist/bundle.js",
-    "test": "jest"
+    "test": "jest --coverage=true"
   },
   "bin": "dist/bundle.js",
   "files": [
