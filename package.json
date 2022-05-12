@@ -1,6 +1,6 @@
 {
   "name": "passkpr",
-  "version": "0.4.1-beta",
+  "version": "1.0.0",
   "description": "Node CLI tool for generate and store passwords securely with one master key",
   "main": "src/app.ts",
   "scripts": {
@@ -23,7 +23,7 @@
     "CLI"
   ],
   "author": "Sohaib Alqasem",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sohaibqasem/Pass-Keeper/issues"
   },
