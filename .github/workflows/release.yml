@@ -23,6 +23,9 @@ jobs:
             
             - name: 📄 test
               run: npm test
+
+            - name: 🏗️ build
+              run: npm run build
               
             - name: 🚀 publish
               run: npm publish --access public
