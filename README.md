@@ -9,9 +9,14 @@ npx passkpr
 ```
 ## Quick start
 ```sh
-npx passkpr 								// To open the mainmenu
+npx passkpr 			// To open the main-menu
 npx passkpr [app-name]
 npx passkpr [app-name] [master-password]
+```
+### Options
+```
+  -V, --version  output the version number
+  -h, --help     display help for command
 ```
 
 ![react-DraftJs-Demo - Animated gif demo](src/demo/pass-keeper.png)
