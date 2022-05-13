@@ -5,13 +5,13 @@ Node CLI tool for generate and store passwords securely with one **master key**
 
 ## Setup
 ```sh
-npx passkpr
+npx passkepr
 ```
 ## Quick start
 ```sh
-npx passkpr 			// To open the main-menu
-npx passkpr [app-name]
-npx passkpr [app-name] [master-password]
+npx passkepr 			// To open the main-menu
+npx passkepr [app-name]
+npx passkepr [app-name] [master-password]
 ```
 ### Options
 ```

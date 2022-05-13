@@ -1,5 +1,5 @@
 {
-  "name": "passkpr",
+  "name": "passkepr",
   "version": "1.0.0",
   "description": "Node CLI tool for generate and store passwords securely with one master key",
   "main": "src/app.ts",
