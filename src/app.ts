@@ -10,7 +10,9 @@ import { setup } from './setup';
 program.version(version);
 
 program
-    .arguments('[appname] [password]')
+    .argument('[appname]', 'app-name you want to search for')
+    .argument('[password]', 'master-password')
+    .showHelpAfterError('(add --help for additional information)')
     .parse();
 
 const [ appname, password ] = program.args;
